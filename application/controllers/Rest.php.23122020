@@ -1,0 +1,191 @@
+<?php
+
+defined("BASEPATH") or exit("No direct script access allowed");
+date_default_timezone_set('Asia/Jakarta');
+
+class Rest extends CI_Controller
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->helper(array('url', 'html'));
+        $this->load->library('session');
+        $this->load->model(array('Mdl_home', 'Mdl_fungsi', 'Mdl_Rest'));
+    }
+
+    function getProduk()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $kueri = $this->Mdl_Rest->getProduk($mulai, $akhir);
+
+        echo json_encode($kueri);
+    }
+    function getProdukInternal()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $kueri = $this->Mdl_Rest->getProdukInternal($mulai, $akhir);
+
+        echo json_encode($kueri);
+    }
+    function getCariCepat()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $tcari = $_REQUEST['tcari'];
+        $akhir = $_REQUEST['akhir'];
+        $kueri = $this->Mdl_Rest->getCariCepat($mulai, $akhir, $tcari);
+
+        echo json_encode($kueri);
+    }
+    function getCariDetail()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $category = $_REQUEST['category'];
+        $substansi = $_REQUEST['substansi'];
+        $status = $_REQUEST['status'];
+        $nomor = $_REQUEST['nomor'];
+        $tahun = $_REQUEST['tahun'];
+        $judul = $_REQUEST['judul'];
+
+        $kueri = $this->Mdl_Rest->getCariDetail($mulai, $akhir, $category, $substansi, $status, $nomor, $tahun, $judul);
+
+        echo json_encode($kueri);
+    }
+    function getSubstansiLimit()
+    {
+        //echo $tthi('mulai');
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $tcari = $_REQUEST['tcari'];
+        $tipe = $_REQUEST['tipe'];
+        $kueri = $this->Mdl_Rest->getSubstansiLimit($mulai, $akhir, $tipe, $tcari);
+
+        echo json_encode($kueri);
+    }
+
+    function getDetail()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $id = $_REQUEST['id'];
+        $kueri = $this->Mdl_Rest->getDetail($id);
+        echo json_encode($kueri);
+    }
+
+    function getFavorit()
+    {
+        //echo $tthi('mulai');
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $tcari = $_REQUEST['tcari'];
+        $tipe = $_REQUEST['tipe'];
+        $string = $_REQUEST['peraturan_id'];
+        $array = array_map('intval', explode(',', $string));
+        $peraturan_id = implode("','", $array);
+        $kueri = $this->Mdl_Rest->getFavorit($mulai, $akhir, $tipe, $tcari, $peraturan_id);
+
+        echo json_encode($kueri);
+    }
+
+    function getDataComboPencarian()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $kueri = $this->Mdl_Rest->getDataComboPencarian();
+        echo json_encode($kueri);
+    }
+
+    function getProleg()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $kueri = $this->Mdl_Rest->getProleg($mulai, $akhir);
+
+        echo json_encode($kueri);
+    }
+
+    function getIzinPemrakarsa()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $kueri = $this->Mdl_Rest->getIzinPemrakarsa($mulai, $akhir);
+
+        echo json_encode($kueri);
+    }
+
+    function getProlegDetail()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+
+        $id = $_REQUEST['id'];
+        $kueri = $this->Mdl_Rest->getProlegDetail($id);
+
+        echo json_encode($kueri);
+    }
+
+    function getIzinPrakarsaDetail()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+
+        $id = $_REQUEST['id'];
+        $kueri = $this->Mdl_Rest->getIzinPrakarsaDetail($id);
+
+        echo json_encode($kueri);
+    }
+
+    function getProdukSubstansi()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+
+        $mulai = $_REQUEST['mulai'];
+        $akhir = $_REQUEST['akhir'];
+        $substansi = $_REQUEST['substansi'];
+
+        $kueri = $this->Mdl_Rest->getProdukSubstansi($mulai, $akhir, $substansi);
+
+        echo json_encode($kueri);
+    }
+
+    function getLinkTerkait()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+
+        $kueri = $this->Mdl_Rest->getLinkTerkait();
+
+        echo json_encode($kueri);
+    }
+
+    function getBantuan()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        header('Access-Control-Allow-Origin: *');
+
+        $kueri = $this->Mdl_Rest->getBantuan();
+
+        echo json_encode($kueri);
+    }
+}

@@ -1,0 +1,10 @@
+api/
+assets/
+Nginx/
+PHP/
+baru/
+download/
+integrasi_jdih/
+internal/
+*.sql
+index.php.asli
